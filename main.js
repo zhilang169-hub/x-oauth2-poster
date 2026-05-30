@@ -24,8 +24,22 @@ async function main() {
   console.log("Image generated");
   const imageBase64 = result.data[0].b64_json;
   fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
-
   console.log("Image saved");
+
+  const mediaId = await xClient.v1.uploadMedia("image.png", {
+  mimeType: "image/png"
+});
+
+  console.log("Media uploaded");
+
+  await xClient.v2.tweet({
+  text: "GitHub Actionsから画像投稿テスト",
+  media: {
+    media_ids: [mediaId]
+  }
+});
+
+console.log("Posted to X");
 }
 
 main().catch(console.error);
