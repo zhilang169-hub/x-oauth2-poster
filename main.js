@@ -14,6 +14,10 @@ async function main() {
   });
 
   console.log("Image generated");
+  const imageBase64 = result.data[0].b64_json;
+  fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
+
+  console.log("Image saved");
 }
 
 main().catch(console.error);
