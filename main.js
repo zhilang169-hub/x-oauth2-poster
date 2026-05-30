@@ -9,7 +9,7 @@ async function main() {
     model: "gpt-image-1",
     prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
   });
-
+  
   console.log("Image generated");
   console.log(result.data[0].b64_json.substring(0, 50));
 }
