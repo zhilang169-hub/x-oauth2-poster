@@ -1,10 +1,18 @@
 import OpenAI from "openai";
+import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
 
 console.log("VERSION-X-POST");
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
+});
+
+const xClient = new TwitterApi({
+  appKey: process.env.X_API_KEY,
+  appSecret: process.env.X_API_SECRET,
+  accessToken: process.env.X_ACCESS_TOKEN,
+  accessSecret: process.env.X_ACCESS_SECRET
 });
 
 async function main() {
