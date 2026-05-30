@@ -1,0 +1,4 @@
+name: Post to X
+
+on:
+  workflow_dispatch:
