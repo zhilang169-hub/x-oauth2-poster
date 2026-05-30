@@ -1,0 +1,11 @@
+{
+  "name": "x-oauth2-poster",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "openai": "^5.0.0"
+  }
+}
