@@ -1,3 +1,4 @@
+console.log("VERSION-20260530");
 import OpenAI from "openai";
 
 const client = new OpenAI({
