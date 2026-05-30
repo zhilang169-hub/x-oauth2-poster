@@ -5,14 +5,13 @@ const client = new OpenAI({
 });
 
 async function main() {
-  console.log("OpenAI connected");
-
-  const response = await client.responses.create({
-    model: "gpt-5",
-    input: "Say hello"
+  const result = await client.images.generate({
+    model: "gpt-image-1",
+    prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
   });
 
-  console.log(response.output_text);
+  console.log("Image generated");
+  console.log(result.data[0].b64_json.substring(0, 50));
 }
 
 main().catch(console.error);
