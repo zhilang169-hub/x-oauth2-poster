@@ -19,6 +19,7 @@ async function main() {
   } = await xClient.refreshOAuth2Token(
   process.env.X_REFRESH_TOKEN
   );
+  console.log(await loggedClient.v2.me());
   const result = await client.images.generate({
     model: "gpt-image-1",
     prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
