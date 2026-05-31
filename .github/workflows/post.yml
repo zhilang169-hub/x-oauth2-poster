@@ -19,3 +19,6 @@ jobs:
       - run: node main.js
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          X_CLIENT_ID: ${{ secrets.X_CLIENT_ID }}
+          X_CLIENT_SECRET: ${{ secrets.X_CLIENT_SECRET }}
+          X_REFRESH_TOKEN: ${{ secrets.X_REFRESH_TOKEN }}
