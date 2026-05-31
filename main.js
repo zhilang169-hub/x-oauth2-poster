@@ -9,13 +9,16 @@ const client = new OpenAI({
 });
 
 const xClient = new TwitterApi({
-  appKey: process.env.X_API_KEY,
-  appSecret: process.env.X_API_SECRET,
-  accessToken: process.env.X_ACCESS_TOKEN,
-  accessSecret: process.env.X_ACCESS_SECRET
+  clientId: process.env.X_CLIENT_ID,
+  clientSecret: process.env.X_CLIENT_SECRET
 });
 
 async function main() {
+  const {
+  client: loggedClient
+  } = await xClient.refreshOAuth2Token(
+  process.env.X_REFRESH_TOKEN
+  );
   const result = await client.images.generate({
     model: "gpt-image-1",
     prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
@@ -26,13 +29,13 @@ async function main() {
   fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
   console.log("Image saved");
 
-  const mediaId = await xClient.v1.uploadMedia("image.png", {
+  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
   mimeType: "image/png"
 });
 
   console.log("Media uploaded");
 
-  await xClient.v2.tweet({
+  await loggedClient.v2.tweet({
   text: "GitHub Actionsから画像投稿テスト",
   media: {
     media_ids: [mediaId]
