@@ -32,15 +32,14 @@ async function main() {
   fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
   console.log("Image saved");
 
-  console.log("START UPLOAD");
+//  console.log("START UPLOAD");
   
-//  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-//  mimeType: "image/png"
+  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
+  mimeType: "image/png"  });
+//  await loggedClient.v2.tweet({
+//    text: "テキスト投稿テスト"
 //  });
-  await loggedClient.v2.tweet({
-    text: "テキスト投稿テスト"
-  });
-  console.log("TEXT POST OK");
+//  console.log("TEXT POST OK");
 
   console.log("UPLOAD OK");
   
