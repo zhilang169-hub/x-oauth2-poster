@@ -34,10 +34,10 @@ async function main() {
   
   const mediaId = await loggedClient.v1.uploadMedia("image.png", {
   mimeType: "image/png"
-  
+  });
   console.log("UPLOAD OK");
-});
-
+  
+  
   console.log("Media uploaded");
 
   await loggedClient.v2.tweet({
