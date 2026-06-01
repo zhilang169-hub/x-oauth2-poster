@@ -14,7 +14,10 @@ const xClient = new TwitterApi({
 });
 
 async function main() {
+  console.log(process.env.X_CLIENT_ID?.length);
+  console.log(process.env.X_CLIENT_SECRET?.length);
   console.log(process.env.X_REFRESH_TOKEN?.length);
+
   console.log("BEFORE REFRESH");
   const {
   client: loggedClient
