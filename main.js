@@ -14,11 +14,13 @@ const xClient = new TwitterApi({
 });
 
 async function main() {
+  console.log("BEFORE REFRESH");
   const {
   client: loggedClient
   } = await xClient.refreshOAuth2Token(
   process.env.X_REFRESH_TOKEN
   );
+  console.log("AFTER REFRESH");
   console.log(await loggedClient.v2.me());
   const result = await client.images.generate({
     model: "gpt-image-1",
