@@ -30,8 +30,12 @@ async function main() {
   fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
   console.log("Image saved");
 
+  console.log("START UPLOAD");
+  
   const mediaId = await loggedClient.v1.uploadMedia("image.png", {
   mimeType: "image/png"
+  
+  console.log("UPLOAD OK");
 });
 
   console.log("Media uploaded");
