@@ -34,9 +34,14 @@ async function main() {
 
   console.log("START UPLOAD");
   
-  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-  mimeType: "image/png"
+//  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
+//  mimeType: "image/png"
+//  });
+  await loggedClient.v2.tweet({
+    text: "テキスト投稿テスト"
   });
+  console.log("TEXT POST OK");
+
   console.log("UPLOAD OK");
   
   
