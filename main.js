@@ -14,9 +14,9 @@ const xClient = new TwitterApi({
 });
 
 async function main() {
-  console.log(process.env.X_CLIENT_ID?.substring(0, 100));
-  console.log(process.env.X_CLIENT_SECRET?.substring(0, 100));
-  console.log(process.env.X_REFRESH_TOKEN?.substring(0, 100));
+  console.log(process.env.X_CLIENT_ID?.substring(0, 10));
+  console.log(process.env.X_CLIENT_SECRET?.substring(40, 10));
+  console.log(process.env.X_REFRESH_TOKEN?.substring(0, 10));
 
   console.log("BEFORE REFRESH");
   const {
