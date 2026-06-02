@@ -31,14 +31,16 @@ async function main() {
 //  } = await xClient.refreshOAuth2Token(
 //  process.env.X_REFRESH_TOKEN
 //  );
-   const {
-   client: loggedClient,
-    accessToken,
-    refreshToken
-  } = await xClient.refreshOAuth2Token(
-  process.env.X_REFRESH_TOKEN
-  );
-
+  
+//   const {
+//   client: loggedClient,
+ //   accessToken,
+//    refreshToken
+ // } = await xClient.refreshOAuth2Token(
+  //process.env.X_REFRESH_TOKEN
+ // );
+const loggedClient = xClient;
+  
 console.log("NEW REFRESH=");
 console.log(refreshToken);
   
