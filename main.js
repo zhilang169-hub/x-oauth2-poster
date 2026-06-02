@@ -43,6 +43,7 @@ async function main() {
   console.log("Image saved");
 
   console.log("START UPLOAD");
+  console.log(await loggedClient.v2.me());
   
   const mediaId = await loggedClient.v1.uploadMedia("image.png", {
   mimeType: "image/png"  });
