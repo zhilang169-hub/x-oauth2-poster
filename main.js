@@ -25,11 +25,23 @@ async function main() {
   console.log(process.env.X_REFRESH_TOKEN?.length);
   
   console.log("BEFORE REFRESH");
-  const {
-  client: loggedClient
+//  const {
+//  client: loggedClient
+//    
+//  } = await xClient.refreshOAuth2Token(
+//  process.env.X_REFRESH_TOKEN
+//  );
+   const {
+   client: loggedClient,
+    accessToken,
+    refreshToken
   } = await xClient.refreshOAuth2Token(
   process.env.X_REFRESH_TOKEN
   );
+
+console.log("NEW REFRESH=");
+console.log(refreshToken);
+  
   console.log("AFTER REFRESH");
   console.log(await loggedClient.v2.me());
   const result = await client.images.generate({
