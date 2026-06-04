@@ -41,8 +41,8 @@ async function main() {
  // );
 const loggedClient = xClient;
   
-console.log("NEW REFRESH=");
-console.log(refreshToken);
+//console.log("NEW REFRESH=");
+//console.log(refreshToken);
   
   console.log("AFTER REFRESH");
   console.log(await loggedClient.v2.me());
