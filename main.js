@@ -70,25 +70,21 @@ console.log(refreshToken);
   console.log("START UPLOAD");
   console.log(await loggedClient.v2.me());
   
-  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-  mimeType: "image/png"  });
-  
-//  await loggedClient.v2.tweet({
-//    text: "テキスト投稿テスト"
-//  });
-//  console.log("TEXT POST OK");
-  
-  console.log(mediaId);
-  console.log("UPLOAD OK");
-  
-  
-  console.log("Media uploaded");
-
+//  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
+  //mimeType: "image/png"  });
+  //console.log(mediaId);
+  //console.log("UPLOAD OK");
+  //console.log("Media uploaded");
+  //await loggedClient.v2.tweet({
+  //text: "GitHub Actionsから画像投稿テスト",
+  //media: {
+   // media_ids: [mediaId]
+  //}
+    
   await loggedClient.v2.tweet({
-  text: "GitHub Actionsから画像投稿テスト",
-  media: {
-    media_ids: [mediaId]
-  }
+    text: "テキスト投稿テスト"  });  console.log("TEXT POST OK");
+  
+    
 });
 
 console.log("Posted to X");
