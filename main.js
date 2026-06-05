@@ -89,10 +89,12 @@ console.log(refreshToken);
    // media_ids: [mediaId]
   //} 
 //});
-    
-  await loggedClient.v2.tweet({
-    text: "テキスト投稿テスト"  });  console.log("TEXT POST OK");
   
+  await loggedClient.v2.tweet({
+  text: `テスト投稿 ${Date.now()}`
+});
+
+console.log("TEXT POST OK");
     
 
 console.log("Posted to X");
