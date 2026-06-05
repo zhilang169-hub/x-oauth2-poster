@@ -52,6 +52,8 @@ const {
 
 console.log("NEW_REFRESH_TOKEN=");
 console.log(refreshToken);
+console.log("SAVE TEST");
+console.log(process.env.GH_PAT ? "PAT OK" : "PAT NG");
 //   const {
 //   client: loggedClient,
  //   accessToken,
