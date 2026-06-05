@@ -39,11 +39,6 @@ async function main() {
  // } = await xClient.refreshOAuth2Token(
   //process.env.X_REFRESH_TOKEN
  // );
-const {
-  client: loggedClient
-} = await xClient.refreshOAuth2Token(
-  process.env.X_REFRESH_TOKEN
-);
   
 //console.log("NEW REFRESH=");
 //console.log(refreshToken);
