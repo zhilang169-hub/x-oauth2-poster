@@ -79,13 +79,13 @@ console.log(refreshToken);
   //text: "GitHub Actionsから画像投稿テスト",
   //media: {
    // media_ids: [mediaId]
-  //}
+  //} 
+//});
     
   await loggedClient.v2.tweet({
     text: "テキスト投稿テスト"  });  console.log("TEXT POST OK");
   
     
-});
 
 console.log("Posted to X");
 }
