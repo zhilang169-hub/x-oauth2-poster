@@ -25,13 +25,25 @@ async function main() {
   console.log(process.env.X_REFRESH_TOKEN?.length);
   
   console.log("BEFORE REFRESH");
+  //const {
+  //client: loggedClient
+//
+ // } = await xClient.refreshOAuth2Token(
+//  process.env.X_REFRESH_TOKEN
+//  );
   const {
-  client: loggedClient
-   
-  } = await xClient.refreshOAuth2Token(
+  client: loggedClient,
+  accessToken,
+  refreshToken
+} = await xClient.refreshOAuth2Token(
   process.env.X_REFRESH_TOKEN
-  );
-  
+);
+
+console.log("NEW_ACCESS_TOKEN=");
+console.log(accessToken);
+
+console.log("NEW_REFRESH_TOKEN=");
+console.log(refreshToken);
 //   const {
 //   client: loggedClient,
  //   accessToken,
