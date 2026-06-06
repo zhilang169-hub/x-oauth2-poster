@@ -1,6 +1,6 @@
 
 
-import sodium from "libsodium-wrappers";
+//import sodium from "libsodium-wrappers";
 import OpenAI from "openai";
 import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
@@ -85,22 +85,18 @@ const keyData = await keyRes.json();
 console.log("KEY_ID=");
 console.log(keyData.key_id);
 
-await sodium.ready;
-
-const messageBytes = sodium.from_string(refreshToken);
-
-const keyBytes = sodium.from_base64(
-  keyData.key,
-  sodium.base64_variants.ORIGINAL
-);
-
-const encryptedBytes =
-  sodium.crypto_box_seal(messageBytes, keyBytes);
-
-const encryptedValue = sodium.to_base64(
-  encryptedBytes,
-  sodium.base64_variants.ORIGINAL
-);
+//await sodium.ready;
+//const messageBytes = sodium.from_string(refreshToken);
+//const keyBytes = sodium.from_base64(
+//  keyData.key,
+//  sodium.base64_variants.ORIGINAL
+//);
+//const encryptedBytes =
+//  sodium.crypto_box_seal(messageBytes, keyBytes);
+//const encryptedValue = sodium.to_base64(
+//  encryptedBytes,
+//  sodium.base64_variants.ORIGINAL
+//);
 
 console.log("SECRET UPDATE");
 
