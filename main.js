@@ -90,14 +90,14 @@ console.log(await res.text());
   
   console.log("AFTER REFRESH");
   console.log(await loggedClient.v2.me());
-  const result = await client.images.generate({
-    model: "gpt-image-1",
-    prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
-  });
+////  const result = await client.images.generate({
+////    model: "gpt-image-1",
+////    prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
+////  });
 
-  console.log("Image generated");
-  const imageBase64 = result.data[0].b64_json;
-  fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
+////  console.log("Image generated");
+////  const imageBase64 = result.data[0].b64_json;
+////  fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
   console.log("Image saved");
 
   console.log("START UPLOAD");
