@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node main.js"
   },
-  "dependencies": {
-  "openai": "^5.0.0",
-  "twitter-api-v2": "^1.23.1",
-  "libsodium-wrappers": "^0.7.15"
+　"dependencies": {
+    "openai": "^5.0.0",
+    "twitter-api-v2": "^1.23.1",
+    "libsodium-wrappers": "^0.7.15"
   }
 }
