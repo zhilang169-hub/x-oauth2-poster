@@ -64,6 +64,19 @@ const userRes = await fetch("https://api.github.com/user", {
 });
 
 console.log(await userRes.text());
+console.log("SECRET UPDATE TEST");
+
+const res = await fetch(
+  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster",
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.GH_TOKEN}`,
+      Accept: "application/vnd.github+json"
+    }
+  }
+);
+
+console.log(await res.text());
 //   const {
 //   client: loggedClient,
  //   accessToken,
