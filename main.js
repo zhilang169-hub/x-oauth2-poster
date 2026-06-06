@@ -54,6 +54,16 @@ console.log("NEW_REFRESH_TOKEN=");
 console.log(refreshToken);
 console.log("SAVE TEST");
 console.log(process.env.GH_TOKEN ? "PAT OK" : "PAT NG");
+
+console.log("GH USER TEST");
+const userRes = await fetch("https://api.github.com/user", {
+  headers: {
+    Authorization: `Bearer ${process.env.GH_TOKEN}`,
+    Accept: "application/vnd.github+json"
+  }
+});
+
+console.log(await userRes.text());
 //   const {
 //   client: loggedClient,
  //   accessToken,
