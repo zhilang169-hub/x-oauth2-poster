@@ -1,3 +1,6 @@
+
+
+import sodium from "libsodium-wrappers";
 import OpenAI from "openai";
 import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
@@ -77,9 +80,8 @@ const keyRes = await fetch(
   }
 );
 
-console.log(await keyRes.text());
-const res = await fetch(
-  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster",
+const keyRes = await fetch(
+  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/public-key",
   {
     headers: {
       Authorization: `Bearer ${process.env.GH_TOKEN}`,
@@ -88,7 +90,47 @@ const res = await fetch(
   }
 );
 
-console.log(await res.text());
+const keyData = await keyRes.json();
+
+console.log("KEY_ID=");
+console.log(keyData.key_id);
+await sodium.ready;
+
+const messageBytes = sodium.from_string(refreshToken);
+
+const keyBytes = sodium.from_base64(
+  keyData.key,
+  sodium.base64_variants.ORIGINAL
+);
+
+const encryptedBytes =
+  sodium.crypto_box_seal(messageBytes, keyBytes);
+
+const encryptedValue = sodium.to_base64(
+  encryptedBytes,
+  sodium.base64_variants.ORIGINAL
+);
+
+console.log("SECRET UPDATE");
+
+const updateRes = await fetch(
+  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/X_REFRESH_TOKEN",
+  {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${process.env.GH_TOKEN}`,
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      encrypted_value: encryptedValue,
+      key_id: keyData.key_id
+    })
+  }
+);
+
+console.log("UPDATE STATUS=");
+console.log(updateRes.status);
 //   const {
 //   client: loggedClient,
  //   accessToken,
