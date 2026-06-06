@@ -80,20 +80,11 @@ const keyRes = await fetch(
   }
 );
 
-const keyRes = await fetch(
-  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/public-key",
-  {
-    headers: {
-      Authorization: `Bearer ${process.env.GH_TOKEN}`,
-      Accept: "application/vnd.github+json"
-    }
-  }
-);
-
 const keyData = await keyRes.json();
 
 console.log("KEY_ID=");
 console.log(keyData.key_id);
+
 await sodium.ready;
 
 const messageBytes = sodium.from_string(refreshToken);
@@ -131,6 +122,17 @@ const updateRes = await fetch(
 
 console.log("UPDATE STATUS=");
 console.log(updateRes.status);
+const res = await fetch(
+  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster",
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.GH_TOKEN}`,
+      Accept: "application/vnd.github+json"
+    }
+  }
+);
+
+console.log(await res.text());
 //   const {
 //   client: loggedClient,
  //   accessToken,
