@@ -1,5 +1,5 @@
 
-
+import { execSync } from "node:child_process";
 import OpenAI from "openai";
 import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
@@ -56,113 +56,12 @@ const {
 
 console.log("NEW_REFRESH_TOKEN=");
 console.log(refreshToken);
+
 console.log("REFRESH LENGTH=");
 console.log(refreshToken.length);
-console.log("SAVE TEST");
-console.log(process.env.GH_TOKEN ? "PAT OK" : "PAT NG");
 
-console.log("GH USER TEST");
-const userRes = await fetch("https://api.github.com/user", {
-  headers: {
-    Authorization: `Bearer ${process.env.GH_TOKEN}`,
-    Accept: "application/vnd.github+json"
-  }
-});
-
-console.log(await userRes.text());
-console.log("SECRET UPDATE TEST");
-console.log("GET PUBLIC KEY");
-
-const keyRes = await fetch(
-  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/public-key",
-  {
-    headers: {
-      Authorization: `Bearer ${process.env.GH_TOKEN}`,
-      Accept: "application/vnd.github+json"
-    }
-  }
-);
-
-const keyData = await keyRes.json();
-
-console.log("KEY_ID=");
-console.log(keyData.key_id);
-  
-const test = crypto.randomBytes(8).toString("hex");
-console.log("CRYPTO TEST");
-console.log(test);
-  
-//await sodium.ready;
-//const messageBytes = sodium.from_string(refreshToken);
-//const keyBytes = sodium.from_base64(
-//  keyData.key,
-//  sodium.base64_variants.ORIGINAL
-//);
-//const encryptedBytes =
-//  sodium.crypto_box_seal(messageBytes, keyBytes);
-//const encryptedValue = sodium.to_base64(
-//  encryptedBytes,
-//  sodium.base64_variants.ORIGINAL
-//);
-
-console.log("SECRET UPDATE");
-const updateRes = await fetch(
-  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/X_REFRESH_TOKEN",
-  {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.GH_TOKEN}`,
-      Accept: "application/vnd.github+json"
-    }
-  }
-);
-
-console.log(updateRes.status);
-
-/*
-const updateRes = await fetch(
-  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/X_REFRESH_TOKEN",
-  {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${process.env.GH_TOKEN}`,
-      Accept: "application/vnd.github+json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      encrypted_value: encryptedValue,
-      key_id: keyData.key_id
-    })
-  }
-);
-
-console.log("UPDATE STATUS=");
-console.log(updateRes.status);
-*/
-const res = await fetch(
-  "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster",
-  {
-    headers: {
-      Authorization: `Bearer ${process.env.GH_TOKEN}`,
-      Accept: "application/vnd.github+json"
-    }
-  }
-);
-
-console.log(await res.text());
-//   const {
-//   client: loggedClient,
- //   accessToken,
-//    refreshToken
- // } = await xClient.refreshOAuth2Token(
-  //process.env.X_REFRESH_TOKEN
- // );
-  
-//console.log("NEW REFRESH=");
-//console.log(refreshToken);
-  
-  console.log("AFTER REFRESH");
-  console.log(await loggedClient.v2.me());
+console.log("AFTER REFRESH");
+console.log(await loggedClient.v2.me());
 ////  const result = await client.images.generate({
 ////    model: "gpt-image-1",
 ////    prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
