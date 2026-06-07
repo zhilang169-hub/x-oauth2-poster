@@ -4,6 +4,7 @@
 import OpenAI from "openai";
 import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
+import crypto from "node:crypto";
 
 console.log("VERSION-X-POST");
 
@@ -86,7 +87,11 @@ const keyData = await keyRes.json();
 
 console.log("KEY_ID=");
 console.log(keyData.key_id);
-
+  
+const test = crypto.randomBytes(8).toString("hex");
+console.log("CRYPTO TEST");
+console.log(test);
+  
 //await sodium.ready;
 //const messageBytes = sodium.from_string(refreshToken);
 //const keyBytes = sodium.from_base64(
