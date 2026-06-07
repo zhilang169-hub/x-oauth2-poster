@@ -1,11 +1,10 @@
 
 
-//import sodium from "libsodium-wrappers";
 import OpenAI from "openai";
 import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
 import crypto from "node:crypto";
-import sodium from "libsodium-wrappers";
+//import sodium from "libsodium-wrappers";
 
 console.log("VERSION-X-POST");
 
