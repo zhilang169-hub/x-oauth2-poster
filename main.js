@@ -99,7 +99,7 @@ console.log(keyData.key_id);
 //);
 
 console.log("SECRET UPDATE");
-
+/*
 const updateRes = await fetch(
   "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/X_REFRESH_TOKEN",
   {
@@ -118,6 +118,7 @@ const updateRes = await fetch(
 
 console.log("UPDATE STATUS=");
 console.log(updateRes.status);
+*/
 const res = await fetch(
   "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster",
   {
