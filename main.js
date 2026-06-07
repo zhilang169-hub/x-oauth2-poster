@@ -55,6 +55,8 @@ const {
 
 console.log("NEW_REFRESH_TOKEN=");
 console.log(refreshToken);
+console.log("REFRESH LENGTH=");
+console.log(refreshToken.length);
 console.log("SAVE TEST");
 console.log(process.env.GH_TOKEN ? "PAT OK" : "PAT NG");
 
