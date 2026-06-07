@@ -103,10 +103,17 @@ console.log(keyData.key_id);
 console.log("SECRET UPDATE");
 const updateRes = await fetch(
   "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/X_REFRESH_TOKEN",
-  { method: "GET" }
+  {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${process.env.GH_TOKEN}`,
+      Accept: "application/vnd.github+json"
+    }
+  }
 );
 
 console.log(updateRes.status);
+
 /*
 const updateRes = await fetch(
   "https://api.github.com/repos/zhilang169-hub/x-oauth2-poster/actions/secrets/X_REFRESH_TOKEN",
