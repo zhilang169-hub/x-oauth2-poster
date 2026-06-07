@@ -1,9 +1,9 @@
 
-import { execSync } from "node:child_process";
 import OpenAI from "openai";
 import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
 import crypto from "node:crypto";
+import { execSync } from "node:child_process";
 //import sodium from "libsodium-wrappers";
 
 console.log("VERSION-X-POST");
@@ -59,7 +59,16 @@ console.log(refreshToken);
 
 console.log("REFRESH LENGTH=");
 console.log(refreshToken.length);
+console.log("GH CLI TEST");
 
+try {
+  const version = execSync("gh --version").toString();
+  console.log(version);
+} catch (e) {
+  console.log("GH CLI NG");
+}
+
+  
 console.log("AFTER REFRESH");
 console.log(await loggedClient.v2.me());
 ////  const result = await client.images.generate({
