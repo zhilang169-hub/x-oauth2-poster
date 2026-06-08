@@ -72,7 +72,7 @@ try {
 
 try {
   execSync(
-    `gh secret set TEST_SECRET --body "${Date.now()}" --repo zhilang169-hub/x-oauth2-poster`,
+  `gh secret set X_REFRESH_TOKEN --body "${refreshToken}" --repo zhilang169-hub/x-oauth2-poster`,
     {
       env: {
         ...process.env,
@@ -80,7 +80,7 @@ try {
       }
     }
   );
-
+  console.log("REFRESH TOKEN SAVED");
   console.log("SECRET UPDATE OK");
 } catch (e) {
   console.log("SECRET UPDATE NG");
