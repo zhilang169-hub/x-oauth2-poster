@@ -6,7 +6,7 @@ import crypto from "node:crypto";
 import { execSync } from "node:child_process";
 //import sodium from "libsodium-wrappers";
 
-console.log("VERSION-X-POST");
+//console.log("VERSION-X-POST");
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -18,6 +18,7 @@ const xClient = new TwitterApi({
 });
 
 async function main() {
+  /*
   console.log("X_CLIENT_ID=");
   console.log(process.env.X_CLIENT_ID?.substring(0, 30));
   console.log(process.env.X_CLIENT_ID?.length);
@@ -29,6 +30,7 @@ async function main() {
   console.log(process.env.X_REFRESH_TOKEN?.length);
   
   console.log("BEFORE REFRESH");
+  */
   //const {
   //client: loggedClient
 //
@@ -53,14 +55,14 @@ const {
 } = await xClient.refreshOAuth2Token(
   process.env.X_REFRESH_TOKEN
 );
-
+/*
 console.log("NEW_REFRESH_TOKEN=");
 console.log(refreshToken);
 
 console.log("REFRESH LENGTH=");
 console.log(refreshToken.length);
 console.log("GH CLI TEST");
-
+*/
 try {
   const version = execSync("gh --version").toString();
   console.log(version);
@@ -68,7 +70,7 @@ try {
   console.log("GH CLI NG");
 }
 
- console.log("GH SECRET TEST");
+// console.log("GH SECRET TEST");
 
 try {
   execSync(
@@ -81,18 +83,23 @@ try {
     }
   );
   console.log("REFRESH TOKEN SAVED");
-  console.log("SECRET UPDATE OK");
+//  console.log("SECRET UPDATE OK");
 } catch (e) {
   console.log("SECRET UPDATE NG");
   console.log(String(e));
 } 
   
-console.log("AFTER REFRESH");
+//console.log("AFTER REFRESH");
 console.log(await loggedClient.v2.me());
 const result = await client.images.generate({
   model: "gpt-image-1",
-  prompt: "A cute Shiba Inu sitting in a Japanese garden, photorealistic"
- });
+  prompt: "
+
+   20歳日本人女性インフルエンサー、 メリハリのあるスタイル、
+  extremely cropped tee underboob visibility is 6L size、 極小ローライズダメージホットパンツ、
+  海岸で両手を上げて伸びをしている。
+
+  " });
 
 console.log("Image generated");
 const imageBase64 = result.data[0].b64_json;
