@@ -68,6 +68,24 @@ try {
   console.log("GH CLI NG");
 }
 
+ console.log("GH SECRET TEST");
+
+try {
+  execSync(
+    `gh secret set TEST_SECRET --body "${Date.now()}" --repo zhilang169-hub/x-oauth2-poster`,
+    {
+      env: {
+        ...process.env,
+        GH_TOKEN: process.env.GH_TOKEN
+      }
+    }
+  );
+
+  console.log("SECRET UPDATE OK");
+} catch (e) {
+  console.log("SECRET UPDATE NG");
+  console.log(String(e));
+} 
   
 console.log("AFTER REFRESH");
 console.log(await loggedClient.v2.me());
