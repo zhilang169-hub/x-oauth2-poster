@@ -93,13 +93,86 @@ try {
 console.log(await loggedClient.v2.me());
 const result = await client.images.generate({
   model: "gpt-image-1",
-  prompt: "
+  prompt: `今日は${process.env.TODAY}
 
-   20歳日本人女性インフルエンサー、 メリハリのあるスタイル、
-  extremely cropped tee underboob visibility is 6L size、 極小ローライズダメージホットパンツ、
-  海岸で両手を上げて伸びをしている。
+"今日は何の日"をテーマにする。
+subject:
+  ethnicity:
+    - East Asian
+  age:
+    - 20s adult woman
+  appearance:
+    - realistic facial features
+    - healthy glamorous figure
+    - athletic feminine silhouette
+    - natural proportions
+  expression:
+    - playful smile
+    - mischievous grin
+    - confident eye contact
+    - cheerful presenter energy
 
-  " });
+skin:
+  - realistic skin texture
+  - visible pores
+  - healthy glow
+  - natural imperfections
+  - photorealistic rendering
+
+makeup:
+  - fresh makeup
+  - glossy lips
+  - subtle highlighter
+  - cool-toned eyeshadow
+  - natural beauty focus
+
+lighting:
+  - bright daylight
+  - natural shadows
+  - realistic skin reflections
+  - commercial photography quality
+
+ポーズはテーマを想起させる体勢にする。
+
+透明アクリルボードは手以外で持つ、頭に載せる、脇に挟む、太ももで挟む、膝で挟む、超能力で浮かせる、机に置く等出来るだけ体に重ならないようにする。
+
+テーマに関する豆知識や一言コメント、関連する出来事などを考えてアクリルボードにマーカーで記載。
+一番最後には『※間違えてたらごめんね❤︎』を書く
+
+服装は、テーマを想起させる衣装をボディラインをかなり強調させて攻めたデザインで着こなす、テーマを想起させるアクセサリーや小物を持っている。
+
+camera:
+  - eye level
+  - front view
+  - full body portrait
+  - shallow depth of field
+  - ultra photorealistic
+  - high detail
+  - premium DSLR quality
+
+atmosphere:
+  - fun
+  - inviting
+  - educational
+  - social media friendly
+  - energetic
+
+quality:
+  - photorealistic
+  - ultra detailed
+  - realistic textures
+  - natural anatomy
+  - premium fashion photography
+
+negative:
+  - cheap costume
+  - anime style
+  - unrealistic anatomy
+  - plastic skin
+  - excessive retouching
+  - low resolution
+  - blurry details
+` });
 
 console.log("Image generated");
 const imageBase64 = result.data[0].b64_json;
