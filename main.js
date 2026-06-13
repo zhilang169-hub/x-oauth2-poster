@@ -178,7 +178,7 @@ const imageBase64 = result.data[0].b64_json;
   fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
   console.log("Image saved");
 
-  /*
+  /*本番用
   console.log("START UPLOAD");
   console.log(await loggedClient.v2.me());
   
@@ -204,6 +204,9 @@ const stat = fs.statSync("image.png");
 console.log("FILE SIZE");
 console.log(stat.size);
 
+console.log("CLIENT TYPE");
+console.log(loggedClient.constructor.name);
+  
 const mediaId = await loggedClient.v1.uploadMedia("image.png", {
   mimeType: "image/png"
 });
