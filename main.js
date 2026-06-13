@@ -181,21 +181,21 @@ const imageBase64 = result.data[0].b64_json;
   console.log("START UPLOAD");
   console.log(await loggedClient.v2.me());
   
-//  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-  //mimeType: "image/png"  });
-  //console.log(mediaId);
-  //console.log("UPLOAD OK");
-  //console.log("Media uploaded");
-  //await loggedClient.v2.tweet({
-  //text: "GitHub Actionsから画像投稿テスト",
-  //media: {
-   // media_ids: [mediaId]
-  //} 
-//});
-  
+  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
+  mimeType: "image/png"  });
+  console.log(mediaId);
+  console.log("UPLOAD OK");
+  console.log("Media uploaded");
   await loggedClient.v2.tweet({
-  text: `テスト投稿 ${Date.now()}`
+  text: "GitHub Actionsから画像投稿テスト",
+  media: {
+    media_ids: [mediaId]
+  } 
 });
+  
+//  await loggedClient.v2.tweet({
+//  text: `テスト投稿 ${Date.now()}`
+//});
 
 console.log("TEXT POST OK");
     
