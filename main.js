@@ -103,7 +103,7 @@ subject:
     - 20s adult woman
   appearance:
     - realistic facial features
-    - athletic feminine silhouette
+ 
     - natural proportions
   expression:
     - playful smile
