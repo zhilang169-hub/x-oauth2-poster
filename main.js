@@ -178,6 +178,7 @@ const imageBase64 = result.data[0].b64_json;
   fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
   console.log("Image saved");
 
+  /*
   console.log("START UPLOAD");
   console.log(await loggedClient.v2.me());
   
@@ -191,6 +192,31 @@ const imageBase64 = result.data[0].b64_json;
   media: {
     media_ids: [mediaId]
   } 
+});
+*/
+  console.log("START UPLOAD");
+console.log(await loggedClient.v2.me());
+
+console.log("FILE EXISTS");
+console.log(fs.existsSync("image.png"));
+
+const stat = fs.statSync("image.png");
+console.log("FILE SIZE");
+console.log(stat.size);
+
+const mediaId = await loggedClient.v1.uploadMedia("image.png", {
+  mimeType: "image/png"
+});
+
+console.log("MEDIA ID =", mediaId);
+console.log("UPLOAD OK");
+console.log("Media uploaded");
+
+await loggedClient.v2.tweet({
+  text: "画像投稿テスト",
+  media: {
+    media_ids: [mediaId]
+  }
 });
   
 //  await loggedClient.v2.tweet({
