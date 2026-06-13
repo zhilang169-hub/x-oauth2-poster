@@ -210,21 +210,26 @@ console.log(loggedClient.constructor.name);
 console.log("AUTH OK");
 console.log(await loggedClient.v2.me());
 
-const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-  mimeType: "image/png"
-});
+  try {
+     const mediaId = await loggedClient.v1.uploadMedia("image.png", {
+       mimeType: "image/png"
+     });
 
-console.log("MEDIA ID =", mediaId);
-console.log("UPLOAD OK");
-console.log("Media uploaded");
+     console.log("MEDIA ID =", mediaId);
+     console.log("UPLOAD OK");
+     console.log("Media uploaded");
 
-await loggedClient.v2.tweet({
-  text: "画像投稿テスト",
-  media: {
-    media_ids: [mediaId]
+     await loggedClient.v2.tweet({
+       text: "画像投稿テスト",
+       media: {
+         media_ids: [mediaId]
+       }
+     });
+  } catch (e) {
+     console.log("UPLOAD ERROR");
+     console.log(e);
+     console.log(e.data);
   }
-});
-  
 //  await loggedClient.v2.tweet({
 //  text: `テスト投稿 ${Date.now()}`
 //});
