@@ -209,7 +209,8 @@ console.log(loggedClient.constructor.name);
 
 console.log("AUTH OK");
 console.log(await loggedClient.v2.me());
-
+console.log("USER ID");
+console.log((await loggedClient.v2.me()).data.id);
   try {
      const mediaId = await loggedClient.v1.uploadMedia("image.png", {
        mimeType: "image/png"
