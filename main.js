@@ -227,13 +227,11 @@ console.log((await loggedClient.v2.me()).data.id);
        }
      });
   } catch (e) {
-//     console.log("UPLOAD ERROR");
-//     console.log(e);
-//     console.log(e.data);
-    console.log("UPLOAD ERROR");
+  console.log("UPLOAD ERROR");
   console.log("CODE =", e.code);
+  console.log("HEADERS =", JSON.stringify(e.headers, null, 2));
   console.log("DATA =", JSON.stringify(e.data, null, 2));
-  }
+} 
 //  await loggedClient.v2.tweet({
 //  text: `テスト投稿 ${Date.now()}`
 //});
