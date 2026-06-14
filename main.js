@@ -211,6 +211,16 @@ console.log("AUTH OK");
 console.log(await loggedClient.v2.me());
 console.log("USER ID");
 console.log((await loggedClient.v2.me()).data.id);
+console.log("TRY TEXT TWEET");
+
+await loggedClient.v2.tweet({
+
+  text: "画像アップロード前テスト"
+
+});
+
+console.log("TEXT TWEET SUCCESS");
+
 
 try {
     const mediaId = await loggedClient.v1.uploadMedia(
