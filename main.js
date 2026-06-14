@@ -215,7 +215,7 @@ console.log("TRY TEXT TWEET");
 
 await loggedClient.v2.tweet({
 
-  text: "画像アップロード前テスト"
+   `テスト ${Date.now()}`
 
 });
 
