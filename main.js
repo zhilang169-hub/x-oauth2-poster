@@ -214,9 +214,7 @@ console.log((await loggedClient.v2.me()).data.id);
 console.log("TRY TEXT TWEET");
 
 await loggedClient.v2.tweet({
-
-   `テスト ${Date.now()}`
-
+  text: `テスト ${Date.now()}`
 });
 
 console.log("TEXT TWEET SUCCESS");
