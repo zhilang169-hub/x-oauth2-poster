@@ -219,11 +219,16 @@ await loggedClient.v2.tweet({
 
 console.log("TEXT TWEET SUCCESS");
 
-
+const mediaClient = new TwitterApi({
+  appKey: process.env.X_API_KEY,
+  appSecret: process.env.X_API_SECRET,
+  accessToken: process.env.X_ACCESS_TOKEN,
+  accessSecret: process.env.X_ACCESS_TOKEN_SECRET,
+});
 try {
     console.log("TRY SMALL IMAGE");
 
-const mediaId = await loggedClient.v1.uploadMedia(
+const mediaId = await mediaClient.v1.uploadMedia(
   "./image.png",
   {
     mimeType: "image/png",
