@@ -1,12 +1,7 @@
-
 import OpenAI from "openai";
 import { TwitterApi } from "twitter-api-v2";
 import fs from "node:fs";
-import crypto from "node:crypto";
 import { execSync } from "node:child_process";
-//import sodium from "libsodium-wrappers";
-
-//console.log("VERSION-X-POST");
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -18,92 +13,41 @@ const xClient = new TwitterApi({
 });
 
 async function main() {
-  /*
-  console.log("X_CLIENT_ID=");
-  console.log(process.env.X_CLIENT_ID?.substring(0, 30));
-  console.log(process.env.X_CLIENT_ID?.length);
-  console.log("X_CLIENT_SECRET=");
-  console.log(process.env.X_CLIENT_SECRET?.substring(0, 30));
-  console.log(process.env.X_CLIENT_SECRET?.length);
-  console.log("X_REFRESH_TOKEN=");
-  console.log(process.env.X_REFRESH_TOKEN?.substring(0, 30));
-  console.log(process.env.X_REFRESH_TOKEN?.length);
-  
-  console.log("BEFORE REFRESH");
-  */
-  //const {
-  //client: loggedClient
-//
- // } = await xClient.refreshOAuth2Token(
-//  process.env.X_REFRESH_TOKEN
-//  );
-  
-//  const {
- // client: loggedClient,
-//  accessToken,
- // refreshToken
-//} = await xClient.refreshOAuth2Token(
-//  process.env.X_REFRESH_TOKEN
-//);
-
-//  console.log("NEW_ACCESS_TOKEN=");
-//console.log(accessToken);
-  
-const {
-  client: loggedClient,
-  refreshToken
-} = await xClient.refreshOAuth2Token(
-  process.env.X_REFRESH_TOKEN
-);
-/*
-console.log("NEW_REFRESH_TOKEN=");
-console.log(refreshToken);
-
-console.log("REFRESH LENGTH=");
-console.log(refreshToken.length);
-console.log("GH CLI TEST");
-*/
-try {
-  const version = execSync("gh --version").toString();
-  console.log(version);
-} catch (e) {
-  console.log("GH CLI NG");
-}
-
-// console.log("GH SECRET TEST");
-
-try {
-  execSync(
-  `gh secret set X_REFRESH_TOKEN --body "${refreshToken}" --repo zhilang169-hub/x-oauth2-poster`,
-    {
-      env: {
-        ...process.env,
-        GH_TOKEN: process.env.GH_TOKEN
-      }
-    }
+  const {
+    client: loggedClient,
+    refreshToken
+  } = await xClient.refreshOAuth2Token(
+    process.env.X_REFRESH_TOKEN
   );
-  console.log("REFRESH TOKEN SAVED");
-//  console.log("SECRET UPDATE OK");
-} catch (e) {
-  console.log("SECRET UPDATE NG");
-  console.log(String(e));
-} 
-  
-//console.log("AFTER REFRESH");
-console.log(await loggedClient.v2.me());
-const result = await client.images.generate({
-  model: "gpt-image-1",
-  prompt: `今日は${process.env.TODAY}
+
+  try {
+    execSync(
+      `gh secret set X_REFRESH_TOKEN --body "${refreshToken}" --repo zhilang169-hub/x-oauth2-poster`,
+      {
+        env: {
+          ...process.env,
+          GH_TOKEN: process.env.GH_TOKEN
+        }
+      }
+    );
+    console.log("REFRESH TOKEN SAVED");
+  } catch (e) {
+    console.log("SECRET UPDATE NG");
+    console.log(String(e));
+  }
+
+  const result = await client.images.generate({
+    model: "gpt-image-1",
+    prompt: `今日は${process.env.TODAY}
 
 "今日は何の日"をテーマにする。
 subject:
   ethnicity:
-    - East Asian
+    - japanese
   age:
-    - 20s adult woman
+    - 20s adult beautiful woman
   appearance:
     - realistic facial features
- 
     - natural proportions
   expression:
     - playful smile
@@ -171,105 +115,40 @@ negative:
   - excessive retouching
   - low resolution
   - blurry details
-` });
+  - 読めない文字
+`
+  });
 
-console.log("Image generated");
-const imageBase64 = result.data[0].b64_json;
+  console.log("Image generated");
+
+  const imageBase64 = result.data[0].b64_json;
   fs.writeFileSync("image.png", Buffer.from(imageBase64, "base64"));
+
   console.log("Image saved");
 
-  /*本番用
-  console.log("START UPLOAD");
-  console.log(await loggedClient.v2.me());
-  
-  const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-  mimeType: "image/png"  });
-  console.log(mediaId);
-  console.log("UPLOAD OK");
-  console.log("Media uploaded");
+  const mediaClient = new TwitterApi({
+    appKey: process.env.X_API_KEY,
+    appSecret: process.env.X_API_SECRET,
+    accessToken: process.env.X_ACCESS_TOKEN,
+    accessSecret: process.env.X_ACCESS_TOKEN_SECRET,
+  });
+
+  const mediaId = await mediaClient.v1.uploadMedia(
+    "./image.png",
+    {
+      mimeType: "image/png",
+      target: "tweet"
+    }
+  );
+
   await loggedClient.v2.tweet({
-  text: "GitHub Actionsから画像投稿テスト",
-  media: {
-    media_ids: [mediaId]
-  } 
-});
-*/
-  console.log("START UPLOAD");
-console.log(await loggedClient.v2.me());
+    text: "",
+    media: {
+      media_ids: [mediaId]
+    }
+  });
 
-console.log("FILE EXISTS");
-console.log(fs.existsSync("image.png"));
-
-const stat = fs.statSync("image.png");
-console.log("FILE SIZE");
-console.log(stat.size);
-
-console.log("CLIENT TYPE");
-console.log(loggedClient.constructor.name);
-
-console.log("AUTH OK");
-console.log(await loggedClient.v2.me());
-console.log("USER ID");
-console.log((await loggedClient.v2.me()).data.id);
-console.log("TRY TEXT TWEET");
-
-await loggedClient.v2.tweet({
-  text: `テスト ${Date.now()}`
-});
-
-console.log("TEXT TWEET SUCCESS");
-console.log("X_API_KEY =", process.env.X_API_KEY?.length);
-console.log("X_API_SECRET =", process.env.X_API_SECRET?.length);
-console.log("X_ACCESS_TOKEN =", process.env.X_ACCESS_TOKEN?.length);
-console.log("X_ACCESS_TOKEN_SECRET =", process.env.X_ACCESS_TOKEN_SECRET?.length);
-const mediaClient = new TwitterApi({
-  appKey: process.env.X_API_KEY,
-  appSecret: process.env.X_API_SECRET,
-  accessToken: process.env.X_ACCESS_TOKEN,
-  accessSecret: process.env.X_ACCESS_TOKEN_SECRET,
-});
-console.log("API KEY EXISTS", !!process.env.X_API_KEY);
-console.log("API SECRET EXISTS", !!process.env.X_API_SECRET);
-console.log("ACCESS TOKEN EXISTS", !!process.env.X_ACCESS_TOKEN);
-console.log("ACCESS TOKEN SECRET EXISTS", !!process.env.X_ACCESS_TOKEN_SECRET);
-try {
-    console.log("TRY SMALL IMAGE");
-
-const mediaId = await mediaClient.v1.uploadMedia(
-  "./image.png",
-  {
-    mimeType: "image/png",
-    target: "tweet"
-  }
-);
-
-console.log(mediaId);
-
-    console.log("MEDIA ID =", mediaId);
-    console.log("UPLOAD OK");
-    console.log("Media uploaded");
-
-    await loggedClient.v2.tweet({
-      text: "画像投稿テスト",
-      media: {
-        media_ids: [mediaId]
-      }
-    });
-
-} catch (e) {
-    console.log("UPLOAD ERROR");
-    console.log("CODE =", e.code);
-    console.log("HEADERS =", JSON.stringify(e.headers, null, 2));
-    console.log("DATA =", JSON.stringify(e.data, null, 2));
-}
-//  await loggedClient.v2.tweet({
-//  text: `テスト投稿 ${Date.now()}`
-//});
-
-console.log("TEXT POST OK");
-    
-
-console.log("Posted to X");
+  console.log("Posted to X");
 }
 
 main().catch(console.error);
