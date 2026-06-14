@@ -223,9 +223,17 @@ console.log("TEXT TWEET SUCCESS");
 
 
 try {
-    const mediaId = await loggedClient.v1.uploadMedia(
-      "./image.png"
-    );
+    console.log("TRY SMALL IMAGE");
+
+const mediaId = await loggedClient.v1.uploadMedia(
+  "./image.png",
+  {
+    mimeType: "image/png",
+    target: "tweet"
+  }
+);
+
+console.log(mediaId);
 
     console.log("MEDIA ID =", mediaId);
     console.log("UPLOAD OK");
