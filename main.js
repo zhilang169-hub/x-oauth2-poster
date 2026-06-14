@@ -212,8 +212,11 @@ console.log(await loggedClient.v2.me());
 console.log("USER ID");
 console.log((await loggedClient.v2.me()).data.id);
   try {
-     const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-       mimeType: "image/png"
+//     const mediaId = await loggedClient.v1.uploadMedia("image.png", {
+//       mimeType: "image/png"
+    const mediaId = await loggedClient.v1.uploadMedia(
+  "./image.png"
+);
      });
 
      console.log("MEDIA ID =", mediaId);
