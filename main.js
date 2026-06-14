@@ -225,6 +225,10 @@ const mediaClient = new TwitterApi({
   accessToken: process.env.X_ACCESS_TOKEN,
   accessSecret: process.env.X_ACCESS_TOKEN_SECRET,
 });
+console.log("API KEY EXISTS", !!process.env.X_API_KEY);
+console.log("API SECRET EXISTS", !!process.env.X_API_SECRET);
+console.log("ACCESS TOKEN EXISTS", !!process.env.X_ACCESS_TOKEN);
+console.log("ACCESS TOKEN SECRET EXISTS", !!process.env.X_ACCESS_TOKEN_SECRET);
 try {
     console.log("TRY SMALL IMAGE");
 
