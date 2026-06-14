@@ -211,30 +211,29 @@ console.log("AUTH OK");
 console.log(await loggedClient.v2.me());
 console.log("USER ID");
 console.log((await loggedClient.v2.me()).data.id);
-  try {
-//     const mediaId = await loggedClient.v1.uploadMedia("image.png", {
-//       mimeType: "image/png"
+
+try {
     const mediaId = await loggedClient.v1.uploadMedia(
-  "./image.png"
-);
-     });
+      "./image.png"
+    );
 
-     console.log("MEDIA ID =", mediaId);
-     console.log("UPLOAD OK");
-     console.log("Media uploaded");
+    console.log("MEDIA ID =", mediaId);
+    console.log("UPLOAD OK");
+    console.log("Media uploaded");
 
-     await loggedClient.v2.tweet({
-       text: "画像投稿テスト",
-       media: {
-         media_ids: [mediaId]
-       }
-     });
-  } catch (e) {
-  console.log("UPLOAD ERROR");
-  console.log("CODE =", e.code);
-  console.log("HEADERS =", JSON.stringify(e.headers, null, 2));
-  console.log("DATA =", JSON.stringify(e.data, null, 2));
-} 
+    await loggedClient.v2.tweet({
+      text: "画像投稿テスト",
+      media: {
+        media_ids: [mediaId]
+      }
+    });
+
+} catch (e) {
+    console.log("UPLOAD ERROR");
+    console.log("CODE =", e.code);
+    console.log("HEADERS =", JSON.stringify(e.headers, null, 2));
+    console.log("DATA =", JSON.stringify(e.data, null, 2));
+}
 //  await loggedClient.v2.tweet({
 //  text: `テスト投稿 ${Date.now()}`
 //});
