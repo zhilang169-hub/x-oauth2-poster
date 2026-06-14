@@ -218,7 +218,10 @@ await loggedClient.v2.tweet({
 });
 
 console.log("TEXT TWEET SUCCESS");
-
+console.log("X_API_KEY =", process.env.X_API_KEY?.length);
+console.log("X_API_SECRET =", process.env.X_API_SECRET?.length);
+console.log("X_ACCESS_TOKEN =", process.env.X_ACCESS_TOKEN?.length);
+console.log("X_ACCESS_TOKEN_SECRET =", process.env.X_ACCESS_TOKEN_SECRET?.length);
 const mediaClient = new TwitterApi({
   appKey: process.env.X_API_KEY,
   appSecret: process.env.X_API_SECRET,
